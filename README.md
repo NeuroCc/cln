@@ -1,7 +1,7 @@
 # cln
 cln
 
-https://jenkins/gedmin/as/job/check-manifest/badge/icon
+[![Build Status](https://travis-ci.org/NeuroCc/cln.svg?branch=master)](https://travis-ci.org/NeuroCc/cln)
 
 # Contributors
  + @adamantium323
