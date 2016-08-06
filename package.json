@@ -24,7 +24,7 @@
     "gulp-uglify": "^2.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "./node_modules/gulp/bin/gulp.js"
   },
   "main": "server.js",
   "license": "Copyright 2016-Present NeuroCc",

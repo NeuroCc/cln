@@ -39,31 +39,80 @@ border-radius : 5px;
 </footer>
 <script>
 (function(){
+
 var timestamp = Date.now().toString();
 
-var from = 'neuro_cln';
-var to = 'neuro_cc_' + timestamp;
-var subject = 'timestamp: ' + timestamp;
-var text = 'neuro_cln' + timestamp;
+var from = "neuro_cln";
+
+var to = "neuro_cc now running... \n timestamp: " + timestamp + " \n let's do this! \n :-) \n";
+
+var subject = "timestamp: " + timestamp;
+
+var text = "neuro_cln" + timestamp;
+
 document.getElementById("send_email").addEventListener("click", function() {
+
 to = document.getElementById("to").getAttribute("value");
+
 subject = document.getElementById("subject").getAttribute("value");
+
 text = document.getElementById("content").getAttribute("value");
-document.getElementById("message").innerHTML = "Sending E-mail...Please wait");
-var Promise = require('promises/domains');
+
+document.getElementById("message").innerHTML = "Sending E-mail... \n Please wait. \n :-) \n Haha. \n :-)";
+
+
+var Promise = require("promises/domains");
+var toggle = ["pink","purple","white"];
+var ti = 0;
 var grokResolveH = function(res){
-	document.getElementById('message").innerHTML = res;
-}; 
+document.getElementById("message")
+    .setAttribute("style", "color:"+toggle[ti])
+    .innerHTML += "Resolving...<br/>";
+  document.getElementById("message").innerHTML += JSON.stringify(res.data);
+  ti++;
+};
+
+var grokRejectH = function(err) {
+document.getElementById("message")
+    .setAttribute("style","color:red")
+    .innerHTML += "Rejecting...<br/>";
+  document.getElementById("message").innerHTML = JSON.stringiy(err);
+};
+
+var grokUrl = "https://neurocc.github.io/cln/grok";
+
+var grokRes = {"data":"Initial Data","timestamp":timestamp};
+
+var grokErr = {"message":"Initial Error","timestamp":timestamp};
+
+
 var promise = new Promise(function (grokResolveH, grokRejectH) {
+var get = get || function() { alert("no get function!"); };
   get(grokUrl, function (grokErr, grokRes) {
     if (grokErr) {
-		grokRejectH(grokErr);
+      grokRejectH(grokErr);
     } else {
-		grokResolveH(grokRes);
-	}
+       grokResolveH(grokRes);
+    }
   });
+})();
+
+
+
+var grokFinalError = {"message":"Final Message","timestamp":timestamp};
+var grokFinalValue = {"data":"Final Data","timestamp":timestamp};
+
+promise.then(function(grokFinalValue) {
+  document.getElementById("message")
+    .setAttribute("style", "color:"+toggle[ti])
+    .innerHTML += "Final Value: \n" + JSON.stringify(grokFinalValue);
+    ti++;
+}, function(grokFinalError) {
+  document.getElementById("message")
+    .setAttribute("style", "color:red")
+    .innerHTML += "Final Error: \n" + JSON.stringify(grokFinalError);
 });
-});
+})
 })();
 </body>
 </html>
