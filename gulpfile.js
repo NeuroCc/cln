@@ -1,61 +1,30 @@
-import gulp from './node_modules/gulp/index.js';
-import less from './node_modules/gulp-less/index.js';
-import babel from './node_modules/gulp-babel/index.js';
-import concat from './node_modules/gulp-concat/index.js';
-import uglify from './node_modules/gulp-uglify/index.js';
-import rename from './node_modules/gulp-rename/index.js';
-import cleanCSS from './node_modules/gulp-clean-css/index.js';
-import del from '.node_modules/del/index.js';
+var gulp = require('gulp'),
+    plumber = require('gulp-plumber'),
+    rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
+var babel = require('gulp-babel');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var imagemin = require('gulp-imagemin'),
+    cache = require('gulp-cache');
+var minifycss = require('gulp-minify-css');
+var sass = require('gulp-sass');
+var browserSync = require('browser-sync');
 
-const paths = {
-  styles: {
-    src: 'src/styles/**/*.less',
-    dest: 'assets/styles/'
-  },
-  scripts: {
-    src: 'src/scripts/**/*.js',
-    dest: 'assets/scripts/'
-  }
+gulp.task('default', defaultTask);
+
+var defaultTask = function(){
+  console.info('TIMESTAMP: ' + Date.now() + ' Running default task...');
+  bs("./cln_stats?pretty_name='Clone%20Stats'");
+  console.info('TIMESTAMP: ' + Date.now() + ' Finished default task...');
 };
 
-/*
- *  * For small tasks you can use arrow functions and export
- *   */
-const clean = () => del([ 'assets' ]);
-export { clean };
+var bs = function(bs) {
+	browserSync({
+    server: {
+       baseDir: bs
+    }
+  });
+}
 
-/*
- *  * You can still declare named functions and export them as tasks
- *   */
-export function styles() {
-  return gulp.src(paths.styles.src)
-    .pipe(less())
-    .pipe(cleanCSS())
-    // pass in options to the stream
-         .pipe(rename({
-               basename: 'main',
-                     suffix: '.min'
-                         }))
-                             .pipe(gulp.dest(paths.styles.dest));
-                             }
-    
-                             export function scripts() {
-                               return gulp.src(paths.scripts.src, { sourcemaps: true })
-                                   .pipe(babel())
-                                       .pipe(uglify())
-                                          .pipe(concat('main.min.js'))
-                                               .pipe(gulp.dest(paths.scripts.dest));
-                                               }
-    
-                                               export function watch() {
-                                                 gulp.watch(paths.scripts.src, scripts);
-                                                   gulp.watch(paths.styles.src, styles);
-                                                   }
-    
-                                                   const build = gulp.series(clean, gulp.parallel(styles, scripts));
-                                                   export { build };
-    
-                                                   /*
-                                                    * Export a default task
-                                                     */
-                                                     export default build;
+gulp.task('browser-sync', bs("./"));
