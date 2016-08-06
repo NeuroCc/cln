@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+NeuroCc Docker Elastic Swarm Mailer
+</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+</head>
+<body>
+<h1>NeuroCc Docker Elastic Swarm Mailer</h1>
+<div id="container">
+</div>
+<div></div>
+&copy; NeuroCc 2016-Present
+<div>
+<h1>mailer</h1>
+<input id="to" type="text" placeholder="adam@maildrop.cc" value="adam@maildrop.cc" />
+<input id="subject" type="text" placeholder="subject" value="subject">
+<textarea="content" cols="40" rows="5" placeholder="content"></textarea>
+<button id="send_email">Send Email</button>
+<span id="message"></span>
+</div>
+<script>
+(function(){
+var from,to,subject,text;
+document.getElementById("send_email").addEventListener("click", function() {
+to = document.getElementById("to").getAttribute("value");
+subject = document.getElementById("subject").getAttribute("value");
+text = document.getElementById("content").getAttribute("value");
+document.getElementById("message").innerHTML = "Sending E-mail...Please wait");
+var Promise = require('promisei/domains');
+ 
+var promise = new Promise(function (resolve, reject) {
+  get('http://3b6a344f.ngrok.io:333', function (err, res) {
+    if (err) reject(err);
+    else resolve(res);
+  });
+});
+});
+})();
+</body>
+</html>
+

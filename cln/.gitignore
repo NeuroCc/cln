@@ -2,21 +2,10 @@
 *.o
 *.a
 *.so
-*.swp
-*.swo
-.bashrc
+
 # Folders
 _obj
 _test
-
-# npm stuff
-npm-debug.log
-node_modules
-node_modules/
-node_modules/*.*
-npm_debug.log
-npm*
-node*
 
 # Architecture specific extensions/prefixes
 *.[568vq]
