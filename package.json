@@ -1,1 +1,13 @@
-{"name":"neurocc_notifier","version":"1.0.0","dependencies":{"nodemailer":"latest","express":"latest"}}
+{"name":"neurocc_notifier",
+"version":"1.1.0",
+"authors":["@adamantium323","neurocc"],
+"dependencies":{
+"nodemailer":"latest",
+"express":"latest"}
+"scripts":{"start":"node server.js"},
+"main":"server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+"license":"Copyright 2016-Present NeuroCc"
+}
