@@ -1,4 +1,4 @@
-# v1.2.0 Release Notes
+# v1.i2.0 Release Notes
 	+ Passing Gulp Build With Travis
 	+ This is not a virus/malware
 	+ Updated documentation
@@ -22,5 +22,5 @@ Disclaimer: NeitherNeuroCc nor NeuroCc Docker Elastic Swarm Mailer are offered a
 
  # Donate
   + [donate](https://gratipay.com/~adamantium323/)
- 
-&copy; 2016-Present NeuroCc
+
+&copy; 2016-Presient NeuroCc
