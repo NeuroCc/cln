@@ -18,6 +18,11 @@ width: 80%;
 padding : 20px;
 border-radius : 5px;
 }
+
+button {
+width: 87%;
+display: flex;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
 </head>
@@ -26,12 +31,11 @@ border-radius : 5px;
 <div id="container">
 </div>
 <div>
-<h1>test cln</h1>
+<h1>NeuroCc Build System</h1>
 <input id="subject" type="text" placeholder="subject" value="subject">
 <textarea="content" style="border-radius:5px;width:80%;padding:20px;background-color:rgba(0,0,255,.33);color:rgba(255,255,255,.89);font-family:cursive;font-size:16px" cols="40" rows="5" placeholder="content">
 </textarea>
-<button id="send_email">run test</button>
-<span id="message"></span>
+<button id="run-test">build</button>
 </div>
 <footer>
 &copy; NeuroCc 2016-Present
@@ -49,13 +53,11 @@ var subject = "timestamp: " + timestamp;
 
 var text = "neuro_cln" + timestamp;
 
-document.getElementById("send_email").addEventListener("click", function() {
+document.getElementById("run-test").addEventListener("click", function() {
 
-to = document.getElementById("to").getAttribute("value");
+to = 'test';
 
-subject = document.getElementById("subject").getAttribute("value");
-
-text = document.getElementById("content").getAttribute("value");
+text = 'test';;
 
 document.getElementById("message").innerHTML = "Sending E-mail... \n Please wait. \n :-) \n Haha. \n :-)";
 
